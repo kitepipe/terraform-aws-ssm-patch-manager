@@ -27,6 +27,7 @@ This module creates the needed resources to use the default Patch Baselines for 
 Patches will only be applied to instances tagged with `TAG_GROUP : $PLATFORM` where `$PLATFORM` is the name of the platform running on that instance.
 
 ### Supported Platforms:
+- AMAZON_LINUX_2023
 - AMAZON_LINUX_2
 - AMAZON_LINUX
 - CENTOS
@@ -86,7 +87,7 @@ No modules.
 | <a name="input_max_scan_concurrency"></a> [max\_scan\_concurrency](#input\_max\_scan\_concurrency) | The maximum number of instances to operate on at once | `number` | `20` | no |
 | <a name="input_max_scan_errors"></a> [max\_scan\_errors](#input\_max\_scan\_errors) | The maximum number of errors before stopping the install task scheduling | `number` | `20` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name to assign to resources in this module | `string` | `"patch-manager"` | no |
-| <a name="input_platforms"></a> [platforms](#input\_platforms) | The list of platforms you want to support | `set(string)` | <pre>[<br>  "AMAZON_LINUX_2",<br>  "AMAZON_LINUX",<br>  "CENTOS",<br>  "ORACLE_LINUX",<br>  "SUSE",<br>  "WINDOWS",<br>  "DEBIAN",<br>  "UBUNTU",<br>  "REDHAT_ENTERPRISE_LINUX",<br>  "MACOS"<br>]</pre> | no |
+| <a name="input_platforms"></a> [platforms](#input\_platforms) | The list of platforms you want to support | `set(string)` | <pre>[<br>  "AMAZON_LINUX_2023",<br>  "AMAZON_LINUX_2",<br>  "AMAZON_LINUX",<br>  "CENTOS",<br>  "ORACLE_LINUX",<br>  "SUSE",<br>  "WINDOWS",<br>  "DEBIAN",<br>  "UBUNTU",<br>  "REDHAT_ENTERPRISE_LINUX",<br>  "MACOS"<br>]</pre> | no |
 | <a name="input_scan_cloudwatch_configs"></a> [scan\_cloudwatch\_configs](#input\_scan\_cloudwatch\_configs) | A set of objects containing `cloudwatch_config`s [docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_maintenance_window_task#cloudwatch_config) | <pre>set(object({<br>    cloudwatch_log_group_name = string<br>    cloudwatch_output_enabled = bool<br>  }))</pre> | `[]` | no |
 | <a name="input_scan_cutoff"></a> [scan\_cutoff](#input\_scan\_cutoff) | How many hours before the end of the maintenance Window to stop scheduling new instances to scan | `number` | `1` | no |
 | <a name="input_scan_duration"></a> [scan\_duration](#input\_scan\_duration) | How long in hours for the scan maintenance window | `number` | `4` | no |
