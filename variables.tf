@@ -42,6 +42,7 @@ variable "platforms" {
   type        = set(string)
 
   default = [
+    "AMAZON_LINUX_2023",
     "AMAZON_LINUX_2",
     "AMAZON_LINUX",
     "CENTOS",
@@ -62,6 +63,7 @@ variable "platforms" {
       toset(var.platforms) == setintersection(
         var.platforms,
         [
+          "AMAZON_LINUX_2023",
           "AMAZON_LINUX_2",
           "AMAZON_LINUX",
           "CENTOS",
