@@ -291,3 +291,9 @@ variable "service_role_arn" {
   type        = string
   default     = null
 }
+
+variable "pre_install_ssm_document_name" {
+  description = "SSM document name to use for the pre-install hook of the Install task"
+  type        = string
+  default     = null
+}
