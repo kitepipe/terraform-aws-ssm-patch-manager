@@ -109,7 +109,7 @@ resource "aws_ssm_maintenance_window_task" "install" {
   priority         = 1
   service_role_arn = var.service_role_arn
   task_type        = "RUN_COMMAND"
-  task_arn         = "AWS-RunPatchBaseline"
+  task_arn         = var.pre_install_ssm_document_name == null ? "AWS-RunPatchBaseline": "AWS-RunPatchBaselineWithHooks"
   window_id        = aws_ssm_maintenance_window.install.id
 
   targets {
@@ -128,6 +128,22 @@ resource "aws_ssm_maintenance_window_task" "install" {
       parameter {
         name   = "Operation"
         values = ["Install"]
+      }
+
+      dynamic "parameter" {
+        for_each = var.pre_install_ssm_document_name != null ? ["RebootIfNeeded"] : []
+        content {
+          name   = "RebootOption"
+          values = [parameter.value]
+        }
+      }
+
+      dynamic "parameter" {
+        for_each = var.pre_install_ssm_document_name != null ? [var.pre_install_ssm_document_name] : []
+        content {
+          name   = "PreInstallHookDocName"
+          values = [parameter.value]
+        }
       }
 
       dynamic "notification_config" {
