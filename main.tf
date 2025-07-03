@@ -41,6 +41,11 @@ resource "aws_ssm_maintenance_window_target" "scan" {
     key    = "tag:Patch Group"
     values = [each.key]
   }
+
+  targets {
+    key    = "tag:Env"
+    values = [var.env]
+  }
 }
 
 resource "aws_ssm_maintenance_window_task" "scan" {
@@ -100,6 +105,11 @@ resource "aws_ssm_maintenance_window_target" "install" {
   targets {
     key    = "tag:Patch Group"
     values = [each.key]
+  }
+
+  targets {
+    key    = "tag:Env"
+    values = [var.env]
   }
 }
 

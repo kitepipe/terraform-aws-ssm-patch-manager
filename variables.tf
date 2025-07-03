@@ -297,3 +297,8 @@ variable "pre_install_ssm_document_name" {
   type        = string
   default     = null
 }
+
+variable "env" {
+  description = "Environment name to use for maintenance window targets. Required."
+  type        = string
+}
