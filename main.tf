@@ -38,11 +38,6 @@ resource "aws_ssm_maintenance_window_target" "scan" {
   resource_type = "INSTANCE"
 
   targets {
-    key    = "tag:Patch Group"
-    values = [each.key]
-  }
-
-  targets {
     key    = "tag:Env"
     values = [var.env]
   }
@@ -101,11 +96,6 @@ resource "aws_ssm_maintenance_window_target" "install" {
   for_each      = var.platforms
   window_id     = aws_ssm_maintenance_window.install.id
   resource_type = "INSTANCE"
-
-  targets {
-    key    = "tag:Patch Group"
-    values = [each.key]
-  }
 
   targets {
     key    = "tag:Env"
